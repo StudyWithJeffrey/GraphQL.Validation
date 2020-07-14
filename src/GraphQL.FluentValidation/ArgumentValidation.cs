@@ -15,7 +15,7 @@ namespace GraphQL.FluentValidation
         /// <summary>
         /// Validate an instance
         /// </summary>
-        public static async Task ValidateAsync(ValidatorTypeCache cache, Type type, object? instance, object userContext)
+        public static async Task ValidateAsync<TArgument>(ValidatorTypeCache cache, Type type, TArgument instance, object userContext)
         {
             Guard.AgainstNull(cache, nameof(cache));
             Guard.AgainstNull(userContext, nameof(userContext));
@@ -40,7 +40,7 @@ namespace GraphQL.FluentValidation
         /// <summary>
         /// Validate an instance
         /// </summary>
-        public static void Validate(ValidatorTypeCache cache, Type type, object? instance, object userContext)
+        public static void Validate<TArgument>(ValidatorTypeCache cache, Type type, TArgument instance, object userContext)
         {
             Guard.AgainstNull(cache, nameof(cache));
             Guard.AgainstNull(userContext, nameof(userContext));
@@ -51,7 +51,7 @@ namespace GraphQL.FluentValidation
                 return;
             }
 
-            var validationContext = BuildValidationContext(instance, userContext);
+            var validationContext = BuildValidationContext<TArgument>(instance, userContext);
             var results = buildAll
                 .SelectMany(validator => validator.Validate(validationContext).Errors);
 
@@ -67,9 +67,9 @@ namespace GraphQL.FluentValidation
             }
         }
 
-        static ValidationContext BuildValidationContext(object? instance, object userContext)
+        static ValidationContext<TArgument> BuildValidationContext<TArgument>(TArgument instance, object userContext)
         {
-            var validationContext = new ValidationContext(instance);
+            var validationContext = new ValidationContext<TArgument>(instance);
             validationContext.RootContextData.Add("UserContext", userContext);
             return validationContext;
         }

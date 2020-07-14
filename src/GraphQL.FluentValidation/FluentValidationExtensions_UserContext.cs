@@ -9,7 +9,7 @@ namespace GraphQL
     {
         /// <summary>
         /// When performing validation the <see cref="ExecutionOptions.UserContext"/> instance
-        /// will be added to <see cref="ValidationContext.RootContextData"/> with an key of "UserContext".
+        /// will be added to <see cref="IValidationContext.RootContextData"/> with an key of "UserContext".
         /// During validation this instance can be retrieved from <see cref="CustomContext"/> using this method.
         /// </summary>
         public static T UserContext<T>(this CustomContext customContext)
@@ -20,10 +20,10 @@ namespace GraphQL
 
         /// <summary>
         /// When performing validation the <see cref="ExecutionOptions.UserContext"/> instance
-        /// will be added to <see cref="ValidationContext.RootContextData"/> with an key of "UserContext".
-        /// During validation this instance can be retrieved from <see cref="ValidationContext"/> using this method.
+        /// will be added to <see cref="IValidationContext.RootContextData"/> with an key of "UserContext".
+        /// During validation this instance can be retrieved from <see cref="IValidationContext"/> using this method.
         /// </summary>
-        public static T UserContext<T>(this ValidationContext validationContext)
+        public static T UserContext<T>(this IValidationContext validationContext)
         {
             Guard.AgainstNull(validationContext, nameof(validationContext));
             return (T) validationContext.RootContextData["UserContext"];

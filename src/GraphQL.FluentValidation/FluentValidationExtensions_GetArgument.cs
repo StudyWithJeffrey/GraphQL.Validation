@@ -9,7 +9,7 @@ namespace GraphQL
     {
         /// <summary>
         /// Wraps <see cref="ResolveFieldContext{TSource}.GetArgument{TType}"/> to validate the resulting argument instance.
-        /// Uses <see cref="IValidator.Validate(ValidationContext)"/> to perform validation.
+        /// Uses <see cref="IValidator.Validate(IValidationContext)"/> to perform validation.
         /// If a <see cref="ValidationException"/> it will be converted <see cref="ExecutionError"/>s by a field middleware.
         /// </summary>
         public static TArgument GetValidatedArgument<TArgument>(this ResolveFieldContext context, string name, TArgument defaultValue = default)
@@ -24,7 +24,7 @@ namespace GraphQL
 
         /// <summary>
         /// Wraps <see cref="ResolveFieldContext{TSource}.GetArgument"/> to validate the resulting argument instance.
-        /// Uses <see cref="IValidator.Validate(ValidationContext)"/> to perform validation.
+        /// Uses <see cref="IValidator.Validate(IValidationContext)"/> to perform validation.
         /// If a <see cref="ValidationException"/> it will be converted <see cref="ExecutionError"/>s by a field middleware.
         /// </summary>
         public static object GetValidatedArgument(this ResolveFieldContext context, Type argumentType, string name, object? defaultValue = null)
@@ -38,7 +38,7 @@ namespace GraphQL
 
         /// <summary>
         /// Wraps <see cref="ResolveFieldContext{TSource}.GetArgument{TType}"/> to validate the resulting argument instance.
-        /// Uses <see cref="IValidator.Validate(ValidationContext)"/> to perform validation.
+        /// Uses <see cref="IValidator.Validate(IValidationContext)"/> to perform validation.
         /// If a <see cref="ValidationException"/> it will be converted <see cref="ExecutionError"/>s by a field middleware.
         /// </summary>
         public static TArgument GetValidatedArgument<TSource, TArgument>(this ResolveFieldContext<TSource> context, string name, TArgument defaultValue = default)
@@ -52,7 +52,7 @@ namespace GraphQL
 
         /// <summary>
         /// Wraps <see cref="ResolveFieldContext{TSource}.GetArgument"/> to validate the resulting argument instance.
-        /// Uses <see cref="IValidator.Validate(ValidationContext)"/> to perform validation.
+        /// Uses <see cref="IValidator.Validate(IValidationContext)"/> to perform validation.
         /// If a <see cref="ValidationException"/> it will be converted <see cref="ExecutionError"/>s by a field middleware.
         /// </summary>
         public static object GetValidatedArgument<TSource>(this ResolveFieldContext<TSource> context, Type argumentType, string name, object? defaultValue = null)
@@ -66,7 +66,7 @@ namespace GraphQL
 
         /// <summary>
         /// Wraps <see cref="ResolveFieldContext{TSource}.GetArgument{TType}"/> to validate the resulting argument instance.
-        /// Uses <see cref="IValidator.Validate(ValidationContext)"/> to perform validation.
+        /// Uses <see cref="IValidator.Validate(IValidationContext)"/> to perform validation.
         /// If a <see cref="ValidationException"/> it will be converted <see cref="ExecutionError"/>s by a field middleware.
         /// </summary>
         public static TArgument GetValidatedArgument<TArgument>(this ResolveFieldContext<object> context, string name, TArgument defaultValue = default)
@@ -80,7 +80,7 @@ namespace GraphQL
 
         /// <summary>
         /// Wraps <see cref="ResolveFieldContext{TSource}.GetArgument"/> to validate the resulting argument instance.
-        /// Uses <see cref="IValidator.Validate(ValidationContext)"/> to perform validation.
+        /// Uses <see cref="IValidator.Validate(IValidationContext)"/> to perform validation.
         /// If a <see cref="ValidationException"/> it will be converted <see cref="ExecutionError"/>s by a field middleware.
         /// </summary>
         public static object GetValidatedArgument(this ResolveFieldContext<object> context, Type argumentType, string name, object? defaultValue = null)
